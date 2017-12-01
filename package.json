@@ -8,7 +8,7 @@
     "readable": "bin/readable"
   },
   "scripts": {
-    "prepack": "preppy",
+    "prepack": "rimraf bin && rimraf lib && preppy",
     "test": "jest"
   },
   "files": [
@@ -34,6 +34,7 @@
   "devDependencies": {
     "eslint-config-readable": "^0.1.2",
     "preppy": "^3.1.7",
+    "rimraf": "^2.6.2",
     "stylelint-config-readable": "^0.1.1"
   },
   "dependencies": {
