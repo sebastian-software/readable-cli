@@ -1,8 +1,8 @@
-const lib = require(".")
+const readable = require(".")
 
 /* eslint-disable */
 module.exports = {
   runner: "jest-runner-eslint",
   testRegex: ".(mjs|js|jsx)$",
-  testPathIgnorePatterns: ["/node_modules/"].concat(lib.gitIgnores)
+  testPathIgnorePatterns: ["/node_modules/"].concat(readable.gitIgnores)
 }
