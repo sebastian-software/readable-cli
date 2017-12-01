@@ -1,5 +1,5 @@
 {
-  "name": "readable-util",
+  "name": "readable-cli",
   "version": "0.0.1",
   "description": "Utilities for formatting and linting different code formats.",
   "main": "lib/index.cjs.js",
@@ -11,6 +11,11 @@
     "prepack": "preppy",
     "test": "jest"
   },
+  "files": [
+    "bin/",
+    "lib/",
+    "jest.config.*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebastian-software/readable-util.git"
