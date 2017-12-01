@@ -1,4 +1,5 @@
 import spawn from "cross-spawn"
+import { resolve } from "path"
 
 export const execSync = spawn.sync
 
@@ -25,4 +26,13 @@ export function cleanFull() {
       stdio: "pipe"
     }).stdout.toString()
   )
+}
+
+export function lintScripts() {
+  const config = resolve(__dirname, "jest.config.eslint.js")
+  execSync("jest", [ "--config", config ])
+}
+
+export function fixScripts() {
+
 }
