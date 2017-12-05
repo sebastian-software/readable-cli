@@ -47,6 +47,8 @@
     "stylelint-config-readable": "^0.1.1"
   },
   "dependencies": {
-    "app-root-dir": "^1.0.2"
+    "app-root-dir": "^1.0.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0"
   }
 }
