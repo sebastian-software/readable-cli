@@ -4,10 +4,18 @@ import meow from "meow"
 
 const { input, flags } = meow(
   `
-    Usage
+    Usage:
       $ readable <command>
 
-    Options
+    Commands:
+      clean:        Cleans the working directory from generated files
+      dist-clean:   Fully cleans the working directory from all files not tracked by Git.
+      lint-script:  Lints all script files
+      lint-style:   Lints all style files
+      fix-script:   Lints and auto-fixes issues in script files
+      fix-style:    Lints and auto-fixes issues in style files
+
+    Options:
       --verbose, -v  Verbose output
 `,
   {
@@ -27,7 +35,7 @@ for (let command of input) {
       clean(flags)
       break
 
-    case "full-clean":
+    case "dist-clean":
       cleanFull(flags)
       break
 
@@ -48,6 +56,6 @@ for (let command of input) {
       break
 
     default:
-      console.warn("Unknown command: ")
+      console.warn(`Unknown command: ${command}!`)
   }
 }
