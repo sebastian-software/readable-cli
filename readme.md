@@ -10,8 +10,16 @@
 
 Command line tool for all tasks linting, fixing and more.
 
+## Usage with Visual Studio Code
 
+You might want to support auto formatting of supported file types in VSCode. To enable this add the "prettier" plugin to your installation and add these user settings:
 
+```json
+"prettier.eslintIntegration": true,
+"prettier.stylelintIntegration": true,
+```
+
+There should be no need for any of the other settings as it most often makes more sense to use the central `.prettierrc.yml` for all of the different use cases.
 
 
 ## Copyright

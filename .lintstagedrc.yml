@@ -1,0 +1,6 @@
+"**/*.{js,mjs,jsx}":
+  - "eslint --fix"
+  - "git add"
+
+"**/*.{css,scss,pcss}":
+  - "stylelint"
