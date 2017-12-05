@@ -39,12 +39,14 @@ export function cleanFull() {
 const SCRIPT_FILES = /\.(mjs|js|jsx)$/
 const STYLE_FILES = /\.(css|scss|pcss)$/
 
+const ESLINT_FLAGS = [ "--format=pretty" ]
+
 export function lintScript(flags) {
-  execSync("eslint", getGitFiles(SCRIPT_FILES), { stdio: "inherit" })
+  execSync("eslint", [ ...ESLINT_FLAGS, getGitFiles(SCRIPT_FILES) ], { stdio: "inherit" })
 }
 
 export function fixScript(flags) {
-  execSync("eslint", [ "--fix", ...getGitFiles(SCRIPT_FILES) ], {
+  execSync("eslint", [ "--fix", ...ESLINT_FLAGS, ...getGitFiles(SCRIPT_FILES) ], {
     stdio: "inherit"
   })
 }
