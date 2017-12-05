@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { clean, cleanFull, lintScript, lintStyle, fixScript, fixStyle } from "./index"
 import meow from "meow"
 
