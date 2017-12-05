@@ -40,8 +40,3 @@ export function lintScripts() {
   const config = resolve(__dirname, "..", "jest.config.eslint.js")
   execSync("jest", [ "--config", config ], { stdio: "inherit" })
 }
-
-export function fixScripts() {
-  const config = resolve(__dirname, "..", "jest.config.eslint.js")
-  execSync("jest", [ "--config", config ], { stdio: "inherit" })
-}
