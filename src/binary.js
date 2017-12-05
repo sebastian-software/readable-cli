@@ -1,4 +1,4 @@
-import { clean, cleanFull, lintScript, lintStyle } from "./index"
+import { clean, cleanFull, lintScript, lintStyle, fixScript, fixStyle } from "./index"
 import meow from "meow"
 
 const { input, flags } = meow(
@@ -36,6 +36,14 @@ for (let command of input) {
 
     case "lint-style":
       lintStyle(flags)
+      break
+
+    case "fix-script":
+      fixScript(flags)
+      break
+
+    case "fix-style":
+      fixStyle(flags)
       break
 
     default:

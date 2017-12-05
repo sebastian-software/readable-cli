@@ -14,7 +14,7 @@ export function getGitIgnores() {
 }
 
 export function getGitFiles(regexp) {
-  var gitFiles = execSync("git", [ "ls-files" ], { stdio: "inherit" })
+  var gitFiles = execSync("git", [ "ls-files" ], { stdio: "pipe" })
     .stdout.toString()
     .trim()
     .split("\n")
@@ -36,10 +36,23 @@ export function cleanFull() {
   })
 }
 
+const SCRIPT_FILES = /\.(mjs|js|jsx)$/
+const STYLE_FILES = /\.(css|scss|pcss)$/
+
 export function lintScript(flags) {
-  execSync("eslint", getGitFiles(/\.(mjs|js|jsx)$/), { stdio: "inherit" })
+  execSync("eslint", getGitFiles(SCRIPT_FILES), { stdio: "inherit" })
+}
+
+export function fixScript(flags) {
+  execSync("eslint", [ "--fix", ...getGitFiles(SCRIPT_FILES) ], {
+    stdio: "inherit"
+  })
 }
 
 export function lintStyle(flags) {
-  execSync("stylelint", getGitFiles(/\.(css|scss|pcss)$/), { stdio: "inherit" })
+  execSync("stylelint", getGitFiles(STYLE_FILES), { stdio: "inherit" })
+}
+
+export function fixStyle(flags) {
+  execSync("stylelint", getGitFiles(STYLE_FILES), { stdio: "inherit" })
 }
