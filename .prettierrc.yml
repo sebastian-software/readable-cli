@@ -1,9 +1,9 @@
 # We generally allow wider code lines, but for auto formatting this
 # is quite a good rule to produce readable code.
-printWidth: 80
+# printWidth: 80 # (uses EditorConfig)
 
 # Use two spaces for tabs
-tabWidth: 2
+# tabWidth: 2 # (uses EditorConfig)
 
 # Unify with convention used in JSX, HTML and CSS to use double quotes
 singleQuote: false
@@ -19,3 +19,6 @@ bracketSpacing: true
 
 # Put the > of a multi-line JSX element at the end of the last line
 jsxBracketSameLine: false
+
+# Put parens of around arguments of arrow functions
+arrowParens: always
