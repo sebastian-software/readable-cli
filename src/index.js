@@ -39,14 +39,15 @@ export function cleanFull() {
 const SCRIPT_FILES = /\.(mjs|js|jsx)$/
 const STYLE_FILES = /\.(css|scss|pcss)$/
 
-const ESLINT_FLAGS = [ "--format=pretty" ]
+// Disable linting warnings around prettier as these can be auto-fixed.
+const ESLINT_LINT_FLAGS = [ "--rule", "prettier/prettier:off" ]
 
 export function lintScript(flags) {
-  execSync("eslint", [ ...ESLINT_FLAGS, ...getGitFiles(SCRIPT_FILES) ], { stdio: "inherit" })
+  execSync("eslint", [ ...ESLINT_LINT_FLAGS, ...getGitFiles(SCRIPT_FILES) ], { stdio: "inherit" })
 }
 
 export function fixScript(flags) {
-  execSync("eslint", [ "--fix", ...ESLINT_FLAGS, ...getGitFiles(SCRIPT_FILES) ], {
+  execSync("eslint", [ "--fix", ...getGitFiles(SCRIPT_FILES) ], {
     stdio: "inherit"
   })
 }
