@@ -6,13 +6,15 @@ import { get as getRoot } from "app-root-dir"
 export const root = getRoot()
 export const execSync = spawn.sync
 
-export const gitIgnores = readFileSync(resolve(root, ".gitignore"), "utf-8")
-  .split("\n")
-  .map((entry) => entry.trim())
-  .filter((entry) => entry !== "" && entry.charAt(0) !== "#")
+export function getGitIgnores() {
+  return readFileSync(resolve(root, ".gitignore"), "utf-8")
+    .split("\n")
+    .map((entry) => entry.trim())
+    .filter((entry) => entry !== "" && entry.charAt(0) !== "#")
+}
 
 export function getGitFiles(regexp) {
-  var gitFiles = execSync("git", [ "ls-files" ], { stdio: "pipe" })
+  var gitFiles = execSync("git", [ "ls-files" ], { stdio: "inherit" })
     .stdout.toString()
     .trim()
     .split("\n")
@@ -23,20 +25,21 @@ export function getGitFiles(regexp) {
 }
 
 export function clean() {
-  console.log(
-    execSync("git", [ "clean", "--force" ], { stdio: "pipe" }).stdout.toString()
-  )
+  execSync("git", [ "clean", "--force" ], {
+    stdio: "inherit"
+  })
 }
 
 export function cleanFull() {
-  console.log(
-    execSync("git", [ "clean", "--force", "-x" ], {
-      stdio: "pipe"
-    }).stdout.toString()
-  )
+  execSync("git", [ "clean", "--force", "-x" ], {
+    stdio: "inherit"
+  })
 }
 
-export function lintScripts() {
-  const config = resolve(__dirname, "..", "jest.config.eslint.js")
-  execSync("jest", [ "--config", config ], { stdio: "inherit" })
+export function lintScript(flags) {
+  execSync("eslint", getGitFiles(/\.(mjs|js|jsx)$/), { stdio: "inherit" })
+}
+
+export function lintStyle(flags) {
+  execSync("stylelint", getGitFiles(/\.(css|scss|pcss)$/), { stdio: "inherit" })
 }
