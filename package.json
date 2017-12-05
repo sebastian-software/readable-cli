@@ -1,6 +1,6 @@
 {
   "name": "readable-cli",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Utilities for formatting and linting different code formats.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
