@@ -42,7 +42,7 @@ const STYLE_FILES = /\.(css|scss|pcss)$/
 const ESLINT_FLAGS = [ "--format=pretty" ]
 
 export function lintScript(flags) {
-  execSync("eslint", [ ...ESLINT_FLAGS, getGitFiles(SCRIPT_FILES) ], { stdio: "inherit" })
+  execSync("eslint", [ ...ESLINT_FLAGS, ...getGitFiles(SCRIPT_FILES) ], { stdio: "inherit" })
 }
 
 export function fixScript(flags) {
