@@ -47,8 +47,6 @@
     "stylelint-config-readable": "^0.1.1"
   },
   "dependencies": {
-    "app-root-dir": "^1.0.2",
-    "jest": "^21.2.1",
-    "jest-runner-eslint": "^0.3.0"
+    "app-root-dir": "^1.0.2"
   }
 }
