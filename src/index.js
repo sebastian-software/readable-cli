@@ -3,11 +3,17 @@ import { resolve } from "path"
 import { readFileSync } from "fs"
 import { get as getRoot } from "app-root-dir"
 
-export const root = getRoot()
+/*
+ * ============================================================================
+ *  UTILITIES
+ * ============================================================================
+ */
+
+export const ROOT = getRoot()
 export const execSync = spawn.sync
 
 export function getGitIgnores() {
-  return readFileSync(resolve(root, ".gitignore"), "utf-8")
+  return readFileSync(resolve(ROOT, ".gitignore"), "utf-8")
     .split("\n")
     .map((entry) => entry.trim())
     .filter((entry) => entry !== "" && entry.charAt(0) !== "#")
@@ -24,6 +30,15 @@ export function getGitFiles(regexp) {
   })
 }
 
+
+
+
+/*
+ * ============================================================================
+ *  CLEANUP
+ * ============================================================================
+ */
+
 export function clean() {
   execSync("git", [ "clean", "--force" ], {
     stdio: "inherit"
@@ -36,15 +51,21 @@ export function cleanFull() {
   })
 }
 
-const SCRIPT_FILES = /\.(mjs|js|jsx)$/
-const STYLE_FILES = /\.(css|scss|pcss)$/
 
-// Disable linting warnings around prettier as these can be auto-fixed.
+
+
+/*
+ * ============================================================================
+ *  SCRIPT
+ * ============================================================================
+ */
+
+const SCRIPT_FILES = /\.(mjs|js|jsx)$/
+
+ // Disable linting warnings around prettier as these can be auto-fixed.
 const ESLINT_LINT_FLAGS = [
-  "--rule",
-  "prettier/prettier:off",
-  "--format",
-  "pretty"
+  "--rule", "prettier/prettier:off",
+  "--format", "pretty"
 ]
 const ESLINT_FIX_FLAGS = [ "--fix", "--format", "pretty" ]
 
@@ -60,10 +81,30 @@ export function fixScript(flags) {
   })
 }
 
+export function prettyScript(flags) {
+  execSync("prettier", getGitFiles(SCRIPT_FILES), { stdio: "inherit" })
+  fixStyle(flags)
+}
+
+
+
+/*
+ * ============================================================================
+ *  STYLE
+ * ============================================================================
+ */
+
+const STYLE_FILES = /\.(css|scss|pcss)$/
+
 export function lintStyle(flags) {
   execSync("stylelint", getGitFiles(STYLE_FILES), { stdio: "inherit" })
 }
 
 export function fixStyle(flags) {
   execSync("stylelint", getGitFiles(STYLE_FILES), { stdio: "inherit" })
+}
+
+export function prettyStyle(flags) {
+  execSync("prettier", getGitFiles(STYLE_FILES), { stdio: "inherit" })
+  fixStyle(flags)
 }

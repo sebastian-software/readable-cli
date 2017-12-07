@@ -5,23 +5,28 @@ import {
   lintScript,
   lintStyle,
   fixScript,
-  fixStyle
+  fixStyle,
+  prettyScript,
+  prettyStyle
 } from "./index"
 import meow from "meow"
 
 const { input, flags } = meow(`
+  Tooling for readable code.
+
   Usage:
     $ readable <command>
 
   Commands:
-    clean:        Cleans the working directory from generated files
-    dist-clean:   Fully cleans the working directory from all files not tracked by Git.
-    lint-script:  Lints all script files
-    lint-style:   Lints all style files
-    fix-script:   Lints and auto-fixes issues in script files
-    fix-style:    Lints and auto-fixes issues in style files
+    clean:         Cleans the working directory from generated files
+    dist-clean:    Fully cleans the working directory from all files not tracked by Git.
+    lint-script:   Lints all script files
+    lint-style:    Lints all style files
+    fix-script:    Lints and auto-fixes issues in script files
+    fix-style:     Lints and auto-fixes issues in style files
 
   Options:
+    --help, -h     Show help text
     --verbose, -v  Verbose output
 `,
   {
@@ -29,6 +34,12 @@ const { input, flags } = meow(`
       verbose: {
         type: "boolean",
         alias: "r",
+        default: false
+      },
+
+      help: {
+        type: "boolean",
+        alias: "h",
         default: false
       }
     }
@@ -58,6 +69,14 @@ for (let command of input) {
 
     case "fix-style":
       fixStyle(flags)
+      break
+
+    case "pretty-script":
+      prettyScript(flags)
+      break
+
+    case "pretty-style":
+      prettyStyle(flags)
       break
 
     default:
