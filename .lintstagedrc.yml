@@ -2,5 +2,10 @@
   - "eslint --fix"
   - "git add"
 
-"**/*.{css,scss,pcss}":
-  - "stylelint"
+"**/*.{css,scss,sass,less,pcss}":
+  - "stylelint --fix"
+  - "git add"
+
+"**/*.{json,md,markdown,gql,graphql}":
+  - "prettier --write"
+  - "git add"
