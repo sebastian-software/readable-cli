@@ -6,6 +6,15 @@
   - "stylelint --fix"
   - "git add"
 
-"**/*.{json,md,markdown,gql,graphql}":
+"**/*.{json,gql,graphql}":
   - "prettier --write"
+  - "git add"
+
+"**/*.{md,markdown}":
+  - "yaspeller --format markdown"
+  - "prettier --write"
+  - "git add"
+
+"**/*.svg":
+  - "svgo"
   - "git add"

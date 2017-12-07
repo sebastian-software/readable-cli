@@ -12,7 +12,7 @@
     "release:minor": "git push && release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "git push && release-it --github.release --npm.publish --non-interactive --increment major",
     "prepack": "rimraf bin && rimraf lib && preppy",
-    "test": "jest"
+    "test": "npm run prepack && jest"
   },
   "files": [
     "bin/",
@@ -28,7 +28,16 @@
     "type": "git",
     "url": "git+https://github.com/sebastian-software/readable-cli.git"
   },
-  "keywords": [],
+  "keywords": [
+    "code",
+    "quality",
+    "linting",
+    "error",
+    "check",
+    "javascript",
+    "stylesheet",
+    "markdown"
+  ],
   "author": {
     "name": "Sebastian Software",
     "email": "s.werner@sebastian-software.de",
