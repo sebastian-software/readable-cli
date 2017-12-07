@@ -69,22 +69,31 @@ const ESLINT_LINT_FLAGS = [
 const ESLINT_FIX_FLAGS = [ "--fix", "--format", "pretty" ]
 
 export function lintScript(flags) {
-  execSync("eslint", [ ...ESLINT_LINT_FLAGS, ...getGitFiles(SCRIPT_FILES) ], {
-    stdio: "inherit"
-  })
+  const files = getGitFiles(SCRIPT_FILES)
+  if (files.length > 0) {
+    execSync("eslint", [ ...ESLINT_LINT_FLAGS, ...getGitFiles(SCRIPT_FILES) ], {
+      stdio: "inherit"
+    })
+  }
 }
 
 export function fixScript(flags) {
-  execSync("eslint", [ ...ESLINT_FIX_FLAGS, ...getGitFiles(SCRIPT_FILES) ], {
-    stdio: "inherit"
-  })
+  const files = getGitFiles(SCRIPT_FILES)
+  if (files.length > 0) {
+    execSync("eslint", [ ...ESLINT_FIX_FLAGS, ...getGitFiles(SCRIPT_FILES) ], {
+      stdio: "inherit"
+    })
+  }
 }
 
 export function prettyScript(flags) {
-  execSync("prettier", [ ...PRETTIER_FLAGS, getGitFiles(SCRIPT_FILES) ], {
-    stdio: "inherit"
-  })
-  fixStyle(flags)
+  const files = getGitFiles(SCRIPT_FILES)
+  if (files.length > 0) {
+    execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
+      stdio: "inherit"
+    })
+    fixScript(flags)
+  }
 }
 
 
@@ -98,16 +107,25 @@ export function prettyScript(flags) {
 const STYLE_FILES = /\.(css|scss|pcss)$/
 
 export function lintStyle(flags) {
-  execSync("stylelint", getGitFiles(STYLE_FILES), { stdio: "inherit" })
+  const files = getGitFiles(STYLE_FILES)
+  if (files.length > 0) {
+    execSync("stylelint", files, { stdio: "inherit" })
+  }
 }
 
 export function fixStyle(flags) {
-  execSync("stylelint", getGitFiles(STYLE_FILES), { stdio: "inherit" })
+  const files = getGitFiles(STYLE_FILES)
+  if (files.length > 0) {
+    execSync("stylelint", files, { stdio: "inherit" })
+  }
 }
 
 export function prettyStyle(flags) {
-  execSync("prettier", [ ...PRETTIER_FLAGS, getGitFiles(STYLE_FILES) ], {
-    stdio: "inherit"
-  })
-  fixStyle(flags)
+  const files = getGitFiles(STYLE_FILES)
+  if (files.length > 0) {
+    execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
+      stdio: "inherit"
+    })
+    fixStyle(flags)
+  }
 }
