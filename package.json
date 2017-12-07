@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/sebastian-software/readable-cli#readme",
   "devDependencies": {
-    "eslint-config-readable": "^0.1.2",
+    "eslint-config-readable": "^0.3.0",
     "preppy": "^3.1.7",
     "release-it": "^5.0.0",
     "rimraf": "^2.6.2",
