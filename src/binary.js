@@ -24,6 +24,8 @@ const { input, flags, showHelp } = meow(`
     lint-style:    Lints all style files
     fix-script:    Lints and auto-fixes issues in script files
     fix-style:     Lints and auto-fixes issues in style files
+    pretty-script: Reformats and auto-fixes issues in script files
+    pretty-style:  Reformats and auto-fixes issues in style files
 
   Options:
     --help, -h     Show help text
@@ -45,7 +47,7 @@ const { input, flags, showHelp } = meow(`
     }
   })
 
-if (input == null) {
+if (input == null || input.length === 0) {
   showHelp()
 }
 
