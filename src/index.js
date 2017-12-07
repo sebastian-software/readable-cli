@@ -71,7 +71,7 @@ const ESLINT_FIX_FLAGS = [ "--fix", "--format", "pretty" ]
 export function lintScript(flags) {
   const files = getGitFiles(SCRIPT_FILES)
   if (files.length > 0) {
-    execSync("eslint", [ ...ESLINT_LINT_FLAGS, ...getGitFiles(SCRIPT_FILES) ], {
+    execSync("eslint", [ ...ESLINT_LINT_FLAGS, ...files ], {
       stdio: "inherit"
     })
   }
@@ -80,7 +80,7 @@ export function lintScript(flags) {
 export function fixScript(flags) {
   const files = getGitFiles(SCRIPT_FILES)
   if (files.length > 0) {
-    execSync("eslint", [ ...ESLINT_FIX_FLAGS, ...getGitFiles(SCRIPT_FILES) ], {
+    execSync("eslint", [ ...ESLINT_FIX_FLAGS, ...files ], {
       stdio: "inherit"
     })
   }
@@ -105,18 +105,23 @@ export function prettyScript(flags) {
  */
 
 const STYLE_FILES = /\.(css|scss|pcss)$/
+const STYLELINT_FIX_FLAGS = [ "--fix" ]
 
 export function lintStyle(flags) {
   const files = getGitFiles(STYLE_FILES)
   if (files.length > 0) {
-    execSync("stylelint", files, { stdio: "inherit" })
+    execSync("stylelint", files, {
+      stdio: "inherit"
+    })
   }
 }
 
 export function fixStyle(flags) {
   const files = getGitFiles(STYLE_FILES)
   if (files.length > 0) {
-    execSync("stylelint", files, { stdio: "inherit" })
+    execSync("stylelint", [ ...STYLELINT_FIX_FLAGS, ...files ], {
+      stdio: "inherit"
+    })
   }
 }
 
