@@ -61,7 +61,7 @@ export function cleanFull() {
 const PRETTIER_FLAGS = [ "--write" ]
 const SCRIPT_FILES = /\.(mjs|js|jsx)$/
 
- // Disable linting warnings around prettier as these can be auto-fixed.
+// Disable linting warnings around prettier as these can be auto-fixed.
 const ESLINT_LINT_FLAGS = [
   "--rule", "prettier/prettier:off",
   "--format", "pretty"
