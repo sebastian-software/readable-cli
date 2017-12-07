@@ -11,7 +11,7 @@ import {
 } from "./index"
 import meow from "meow"
 
-const { input, flags } = meow(`
+const { input, flags, showHelp } = meow(`
   Tooling for readable code.
 
   Usage:
@@ -44,6 +44,10 @@ const { input, flags } = meow(`
       }
     }
   })
+
+if (input == null) {
+  showHelp()
+}
 
 for (let command of input) {
   switch (command) {
