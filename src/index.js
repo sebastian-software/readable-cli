@@ -1,4 +1,6 @@
 import spawn from "cross-spawn"
+import { readFileSync } from "fs"
+import { resolve } from "path"
 import { get as getRoot } from "app-root-dir"
 
 /*
