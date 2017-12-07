@@ -1,22 +1,28 @@
 /* eslint-disable no-console */
-import { clean, cleanFull, lintScript, lintStyle, fixScript, fixStyle } from "./index"
+import {
+  clean,
+  cleanFull,
+  lintScript,
+  lintStyle,
+  fixScript,
+  fixStyle
+} from "./index"
 import meow from "meow"
 
-const { input, flags } = meow(
-  `
-    Usage:
-      $ readable <command>
+const { input, flags } = meow(`
+  Usage:
+    $ readable <command>
 
-    Commands:
-      clean:        Cleans the working directory from generated files
-      dist-clean:   Fully cleans the working directory from all files not tracked by Git.
-      lint-script:  Lints all script files
-      lint-style:   Lints all style files
-      fix-script:   Lints and auto-fixes issues in script files
-      fix-style:    Lints and auto-fixes issues in style files
+  Commands:
+    clean:        Cleans the working directory from generated files
+    dist-clean:   Fully cleans the working directory from all files not tracked by Git.
+    lint-script:  Lints all script files
+    lint-style:   Lints all style files
+    fix-script:   Lints and auto-fixes issues in script files
+    fix-style:    Lints and auto-fixes issues in style files
 
-    Options:
-      --verbose, -v  Verbose output
+  Options:
+    --verbose, -v  Verbose output
 `,
   {
     flags: {
@@ -26,8 +32,7 @@ const { input, flags } = meow(
         default: false
       }
     }
-  }
-)
+  })
 
 for (let command of input) {
   switch (command) {
