@@ -58,6 +58,7 @@ export function cleanFull() {
  * ============================================================================
  */
 
+const PRETTIER_FLAGS = [ "--write" ]
 const SCRIPT_FILES = /\.(mjs|js|jsx)$/
 
  // Disable linting warnings around prettier as these can be auto-fixed.
@@ -80,7 +81,9 @@ export function fixScript(flags) {
 }
 
 export function prettyScript(flags) {
-  execSync("prettier", getGitFiles(SCRIPT_FILES), { stdio: "inherit" })
+  execSync("prettier", [ ...PRETTIER_FLAGS, getGitFiles(SCRIPT_FILES) ], {
+    stdio: "inherit"
+  })
   fixStyle(flags)
 }
 
@@ -103,6 +106,8 @@ export function fixStyle(flags) {
 }
 
 export function prettyStyle(flags) {
-  execSync("prettier", getGitFiles(STYLE_FILES), { stdio: "inherit" })
+  execSync("prettier", [ ...PRETTIER_FLAGS, getGitFiles(STYLE_FILES) ], {
+    stdio: "inherit"
+  })
   fixStyle(flags)
 }
