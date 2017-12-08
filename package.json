@@ -12,7 +12,7 @@
     "release:minor": "git push && release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "git push && release-it --github.release --npm.publish --non-interactive --increment major",
     "prepack": "rimraf bin && rimraf lib && preppy",
-    "test": "npm run prepack && jest"
+    "test": "npm run prepack"
   },
   "files": [
     "bin/",
