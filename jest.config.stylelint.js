@@ -4,5 +4,12 @@ const files = getStyleFiles().map(mapToJestRoot)
 
 module.exports = {
   runner: "jest-runner-stylelint",
-  testMatch: files.length > 0 ? files : [ "<rootDir>/-no-matching-git-files-found-" ]
+  testMatch: files.length > 0 ? files : [ "<rootDir>/-no-matching-git-files-found-" ],
+  moduleFileExtensions: [
+    "css",
+    "pcss",
+    "sss",
+    "scss",
+    "sass"
+  ]
 }
