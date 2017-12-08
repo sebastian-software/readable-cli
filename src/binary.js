@@ -3,6 +3,7 @@ import {
   clean,
   cleanFull,
   lintScript,
+  lintScriptFast,
   lintStyle,
   fixScript,
   fixStyle,
@@ -18,21 +19,23 @@ const { input, flags, showHelp } = meow(`
     $ readable <command>
 
   Commands:
-    clean:          Cleans the working directory from generated files
-    dist-clean:     Fully cleans the working directory from all files not tracked by Git.
+    clean:             Cleans the working directory from generated files
+    dist-clean:        Fully cleans the working directory from all files not tracked by Git.
 
-    lint-script:    Lints all script files
-    lint-style:     Lints all style files
+    lint-script:       Lints all script files
+    lint-style:        Lints all style files
 
-    fix-script:     Lints and auto-fixes issues in script files
-    fix-style:      Lints and auto-fixes issues in style files
+    lint-script-fast:  Lints all script files (in parallel with Jest)
 
-    pretty-script:  Reformats and auto-fixes issues in script files
-    pretty-style:   Reformats and auto-fixes issues in style files
+    fix-script:        Lints and auto-fixes issues in script files
+    fix-style:         Lints and auto-fixes issues in style files
+
+    pretty-script:     Reformats and auto-fixes issues in script files
+    pretty-style:      Reformats and auto-fixes issues in style files
 
   Options:
-    --help, -h     Show help text
-    --verbose, -v  Verbose output
+    --help, -h         Show help text
+    --verbose, -v      Verbose output
 `,
   {
     flags: {
@@ -66,6 +69,10 @@ for (let command of input) {
 
     case "lint-script":
       lintScript(flags)
+      break
+
+    case "lint-script-fast":
+      lintScriptFast(flags)
       break
 
     case "lint-style":

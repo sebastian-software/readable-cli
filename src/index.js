@@ -30,6 +30,10 @@ export function getGitFiles(regexp) {
   })
 }
 
+export function mapToJestRoot(entry) {
+  return `<rootDir>/${entry}`
+}
+
 
 
 
@@ -70,6 +74,10 @@ const ESLINT_LINT_FLAGS = [
 ]
 const ESLINT_FIX_FLAGS = [ "--fix", "--format", "pretty" ]
 
+export function getScriptFiles() {
+  return getGitFiles(SCRIPT_FILES)
+}
+
 export function lintScript(flags) {
   const files = getGitFiles(SCRIPT_FILES)
   if (files.length > 0) {
@@ -77,6 +85,13 @@ export function lintScript(flags) {
       stdio: "inherit"
     })
   }
+}
+
+export function lintScriptFast(flags) {
+  /* eslint-env node */
+  execSync("jest", [ "--config", resolve(__dirname, "..", "jest.config.eslint.js") ], {
+    stdio: "inherit"
+  })
 }
 
 export function fixScript(flags) {
@@ -108,6 +123,10 @@ export function prettyScript(flags) {
 
 const STYLE_FILES = /\.(css|scss|pcss)$/
 const STYLELINT_FIX_FLAGS = [ "--fix" ]
+
+export function getStyleFiles() {
+  return getGitFiles(STYLE_FILES)
+}
 
 export function lintStyle(flags) {
   const files = getGitFiles(STYLE_FILES)
