@@ -1,8 +1,8 @@
 /* eslint-disable import/no-commonjs */
-const { getScriptFiles, mapToJestRoot } = require(".")
-const files = getScriptFiles().map(mapToJestRoot)
+const { getStyleFiles, mapToJestRoot } = require(".")
+const files = getStyleFiles().map(mapToJestRoot)
 
 module.exports = {
-  runner: "jest-runner-eslint",
+  runner: "jest-runner-stylelint",
   testMatch: files.length > 0 ? files : [ "<rootDir>/-no-matching-git-files-found-" ]
 }

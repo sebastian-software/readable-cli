@@ -79,7 +79,7 @@ export function getScriptFiles() {
 }
 
 export function lintScript(flags) {
-  const files = getGitFiles(SCRIPT_FILES)
+  const files = getScriptFiles()
   if (files.length > 0) {
     execSync("eslint", [ ...ESLINT_LINT_FLAGS, ...files ], {
       stdio: "inherit"
@@ -95,7 +95,7 @@ export function lintScriptFast(flags) {
 }
 
 export function fixScript(flags) {
-  const files = getGitFiles(SCRIPT_FILES)
+  const files = getScriptFiles()
   if (files.length > 0) {
     execSync("eslint", [ ...ESLINT_FIX_FLAGS, ...files ], {
       stdio: "inherit"
@@ -104,7 +104,7 @@ export function fixScript(flags) {
 }
 
 export function prettyScript(flags) {
-  const files = getGitFiles(SCRIPT_FILES)
+  const files = getScriptFiles()
   if (files.length > 0) {
     execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
       stdio: "inherit"
@@ -129,7 +129,7 @@ export function getStyleFiles() {
 }
 
 export function lintStyle(flags) {
-  const files = getGitFiles(STYLE_FILES)
+  const files = getStyleFiles()
   if (files.length > 0) {
     execSync("stylelint", files, {
       stdio: "inherit"
@@ -138,7 +138,7 @@ export function lintStyle(flags) {
 }
 
 export function fixStyle(flags) {
-  const files = getGitFiles(STYLE_FILES)
+  const files = getStyleFiles()
   if (files.length > 0) {
     execSync("stylelint", [ ...STYLELINT_FIX_FLAGS, ...files ], {
       stdio: "inherit"
@@ -147,7 +147,7 @@ export function fixStyle(flags) {
 }
 
 export function prettyStyle(flags) {
-  const files = getGitFiles(STYLE_FILES)
+  const files = getStyleFiles()
   if (files.length > 0) {
     execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
       stdio: "inherit"

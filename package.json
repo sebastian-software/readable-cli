@@ -61,6 +61,7 @@
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "jest-runner-eslint": "^0.3.0",
+    "jest-runner-stylelint": "^1.0.0",
     "lint-staged": "^6.0.0",
     "svgo": "^1.0.3"
   }
