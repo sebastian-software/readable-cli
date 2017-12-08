@@ -20,14 +20,16 @@ export function getGitIgnores() {
 }
 
 export function getGitFiles(regexp) {
-  var gitFiles = execSync("git", [ "ls-files" ], { stdio: "pipe" })
+  const gitFiles = execSync("git", [ "ls-files" ], { stdio: "pipe" })
     .stdout.toString()
     .trim()
     .split("\n")
 
-  return gitFiles.filter((fileName) => {
+  const result = gitFiles.filter((fileName) => {
     return regexp ? regexp.exec(fileName) : fileName
   })
+
+  return result.length > 0 ? result : null
 }
 
 export function mapToJestRoot(entry) {
@@ -80,7 +82,7 @@ export function getScriptFiles() {
 
 export function lintScript(flags) {
   const files = getScriptFiles()
-  if (files.length > 0) {
+  if (files) {
     execSync("eslint", [ ...ESLINT_LINT_FLAGS, ...files ], {
       stdio: "inherit"
     })
@@ -96,7 +98,7 @@ export function lintScriptFast(flags) {
 
 export function fixScript(flags) {
   const files = getScriptFiles()
-  if (files.length > 0) {
+  if (files) {
     execSync("eslint", [ ...ESLINT_FIX_FLAGS, ...files ], {
       stdio: "inherit"
     })
@@ -105,7 +107,7 @@ export function fixScript(flags) {
 
 export function prettyScript(flags) {
   const files = getScriptFiles()
-  if (files.length > 0) {
+  if (files) {
     execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
       stdio: "inherit"
     })
@@ -130,16 +132,23 @@ export function getStyleFiles() {
 
 export function lintStyle(flags) {
   const files = getStyleFiles()
-  if (files.length > 0) {
+  if (files) {
     execSync("stylelint", files, {
       stdio: "inherit"
     })
   }
 }
 
+export function lintStyleFast(flags) {
+  /* eslint-env node */
+  execSync("jest", [ "--config", resolve(__dirname, "..", "jest.config.stylelint.js") ], {
+    stdio: "inherit"
+  })
+}
+
 export function fixStyle(flags) {
   const files = getStyleFiles()
-  if (files.length > 0) {
+  if (files) {
     execSync("stylelint", [ ...STYLELINT_FIX_FLAGS, ...files ], {
       stdio: "inherit"
     })
@@ -148,7 +157,7 @@ export function fixStyle(flags) {
 
 export function prettyStyle(flags) {
   const files = getStyleFiles()
-  if (files.length > 0) {
+  if (files) {
     execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
       stdio: "inherit"
     })
