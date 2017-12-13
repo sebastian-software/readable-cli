@@ -49,9 +49,9 @@
   },
   "homepage": "https://github.com/sebastian-software/readable-cli#readme",
   "devDependencies": {
-    "eslint-config-readable": "^0.3.0",
+    "eslint-config-readable": "^0.3.6",
     "preppy": "^3.1.7",
-    "release-it": "^5.0.0",
+    "release-it": "^5.1.2",
     "rimraf": "^2.6.2",
     "stylelint-config-readable": "^0.1.1"
   },
