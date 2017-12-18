@@ -2,12 +2,14 @@ import spawn from "cross-spawn"
 import { readFileSync } from "fs"
 import { resolve } from "path"
 import { get as getRoot } from "app-root-dir"
+import jest from "jest"
+
 
 /*
- * ============================================================================
- *  UTILITIES
- * ============================================================================
- */
+==============================================================================
+  UTILITIES
+==============================================================================
+*/
 
 export const ROOT = getRoot()
 export const execSync = spawn.sync
@@ -40,10 +42,10 @@ export function mapToJestRoot(entry) {
 
 
 /*
- * ============================================================================
- *  CLEANUP
- * ============================================================================
- */
+==============================================================================
+  CLEANUP
+==============================================================================
+*/
 
 export function clean() {
   execSync("git", [ "clean", "--force" ], {
@@ -61,10 +63,10 @@ export function cleanFull() {
 
 
 /*
- * ============================================================================
- *  SCRIPT
- * ============================================================================
- */
+==============================================================================
+  SCRIPT
+==============================================================================
+*/
 
 const PRETTIER_FLAGS = [ "--write" ]
 const SCRIPT_FILES = /\.(mjs|js|jsx)$/
@@ -91,9 +93,11 @@ export function lintScript(flags) {
 
 export function lintScriptFast(flags) {
   /* eslint-env node */
-  execSync("jest", [ "--config", resolve(__dirname, "..", "jest.config.eslint.js") ], {
-    stdio: "inherit"
-  })
+  // execSync("jest", [ "--config", resolve(__dirname, "..", "jest.config.eslint.js") ], {
+  //   stdio: "inherit"
+  // })
+
+  jest.run([ "--config", resolve(__dirname, "..", "jest.config.eslint.js") ])
 }
 
 export function fixScript(flags) {
@@ -118,10 +122,10 @@ export function prettyScript(flags) {
 
 
 /*
- * ============================================================================
- *  STYLE
- * ============================================================================
- */
+==============================================================================
+  STYLE
+==============================================================================
+*/
 
 const STYLE_FILES = /\.(css|scss|pcss)$/
 const STYLELINT_FIX_FLAGS = [ "--fix" ]
