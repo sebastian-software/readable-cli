@@ -5,6 +5,7 @@ import {
   lintScript,
   lintScriptFast,
   lintStyle,
+  lintStyleFast,
   fixScript,
   fixStyle,
   prettyScript,
@@ -26,6 +27,7 @@ const { input, flags, showHelp } = meow(`
     lint-style:        Lints all style files
 
     lint-script-fast:  Lints all script files (in parallel with Jest)
+    lint-style-fast:   Lints all stylesheet files (in parallel with Jest)
 
     fix-script:        Lints and auto-fixes issues in script files
     fix-style:         Lints and auto-fixes issues in style files
@@ -77,6 +79,10 @@ for (let command of input) {
 
     case "lint-style":
       lintStyle(flags)
+      break
+
+    case "lint-style-fast":
+      lintStyleFast(flags)
       break
 
     case "fix-script":

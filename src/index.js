@@ -93,10 +93,6 @@ export function lintScript(flags) {
 
 export function lintScriptFast(flags) {
   /* eslint-env node */
-  // execSync("jest", [ "--config", resolve(__dirname, "..", "jest.config.eslint.js") ], {
-  //   stdio: "inherit"
-  // })
-
   jest.run([ "--config", resolve(__dirname, "..", "jest.config.eslint.js") ])
 }
 
@@ -145,9 +141,7 @@ export function lintStyle(flags) {
 
 export function lintStyleFast(flags) {
   /* eslint-env node */
-  execSync("jest", [ "--config", resolve(__dirname, "..", "jest.config.stylelint.js") ], {
-    stdio: "inherit"
-  })
+  jest.run([ "--config", resolve(__dirname, "..", "jest.config.stylelint.js") ])
 }
 
 export function fixStyle(flags) {

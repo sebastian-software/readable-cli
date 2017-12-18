@@ -1,17 +1,26 @@
 /* eslint-disable import/no-commonjs */
-const { getStyleFiles, mapToJestRoot } = require(".")
 const root = require("app-root-dir").get()
-const files = getStyleFiles()
 
 module.exports = {
   runner: "jest-runner-stylelint",
   rootDir: root,
-  testMatch: files ? files.map(mapToJestRoot) : [ "<rootDir>/-no-matching-git-files-found-" ],
+  testMatch: [
+    "<rootDir>/src/**/*.{css,pcss,sss,scss,sass,less}",
+    "<rootDir>/test/**/*.{css,pcss,sss,scss,sass,less}",
+    "<rootDir>/__tests__/**/*.{css,pcss,sss,scss,sass,less}",
+    "<rootDir>/*.{css,pcss,sss,scss,sass,less}"
+  ],
+  testPathIgnorePatterns: [
+    "<rootDir>/lib/*",
+    "<rootDir>/bin/*",
+    "<rootDir>/dist/*"
+  ],
   moduleFileExtensions: [
     "css",
     "pcss",
     "sss",
     "scss",
-    "sass"
+    "sass",
+    "less"
   ]
 }
