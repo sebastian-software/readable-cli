@@ -2,7 +2,7 @@
   - "eslint --fix"
   - "git add"
 
-"**/*.{css,scss,sass,less,pcss}":
+"**/*.{css,pcss,sss,scss,sass,less}":
   - "stylelint --fix"
   - "git add"
 
