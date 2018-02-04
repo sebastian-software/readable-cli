@@ -167,7 +167,7 @@ export function prettyStyle(flags) {
 
 /*
 ==============================================================================
-  DOCS
+  DOCS: Markdown, ...
 ==============================================================================
 */
 
@@ -179,6 +179,29 @@ export function getDocFiles() {
 
 export function prettyDoc(flags) {
   const files = getDocFiles()
+  if (files) {
+    execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
+      stdio: "inherit"
+    })
+  }
+}
+
+
+
+/*
+==============================================================================
+  DATA: JSON, ...
+==============================================================================
+*/
+
+const DATA_FILES = /\.(json)$/
+
+export function getDataFiles() {
+  return getGitFiles(DATA_FILES)
+}
+
+export function prettyData(flags) {
+  const files = getDataFiles()
   if (files) {
     execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
       stdio: "inherit"
