@@ -9,7 +9,8 @@ import {
   fixScript,
   fixStyle,
   prettyScript,
-  prettyStyle
+  prettyStyle,
+  prettyDoc
 } from "./index"
 import meow from "meow"
 
@@ -32,8 +33,9 @@ const { input, flags, showHelp } = meow(`
     fix-script:        Lints and auto-fixes issues in script files
     fix-style:         Lints and auto-fixes issues in style files
 
-    pretty-script:     Reformats and auto-fixes issues in script files
-    pretty-style:      Reformats and auto-fixes issues in style files
+    pretty-script:     Prettifies and auto-fixes issues in script files
+    pretty-style:      Prettifies and auto-fixes issues in style files
+    pretty-doc:        Prettifies markdown files (including code blocks)
 
   Options:
     --help, -h         Show help text
@@ -99,6 +101,10 @@ for (let command of input) {
 
     case "pretty-style":
       prettyStyle(flags)
+      break
+
+    case "pretty-doc":
+      prettyDoc(flags)
       break
 
     default:

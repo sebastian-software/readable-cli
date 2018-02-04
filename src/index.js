@@ -177,7 +177,7 @@ export function getDocFiles() {
   return getGitFiles(DOC_FILES)
 }
 
-export function prettyDocs(flags) {
+export function prettyDoc(flags) {
   const files = getDocFiles()
   if (files) {
     execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
