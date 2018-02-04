@@ -162,3 +162,26 @@ export function prettyStyle(flags) {
     fixStyle(flags)
   }
 }
+
+
+
+/*
+==============================================================================
+  DOCS
+==============================================================================
+*/
+
+const DOC_FILES = /\.(md|markdown)$/
+
+export function getDocFiles() {
+  return getGitFiles(DOC_FILES)
+}
+
+export function prettyDocs(flags) {
+  const files = getDocFiles()
+  if (files) {
+    execSync("prettier", [ ...PRETTIER_FLAGS, ...files ], {
+      stdio: "inherit"
+    })
+  }
+}
